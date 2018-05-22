@@ -1,6 +1,6 @@
 import logging
 import traceback
-import MySQLdb
+import pymysql
 from db_helper import passwd
 
 
@@ -58,8 +58,8 @@ def data_convert(film):
         my_map(film, 'storyline'),
         my_map(film, 'award'),
         my_map_double(film, 'runtime'), my_map(film, 'soundmix'), my_map_int(film, 'Oscar'),
-        my_map_double(film, 'budget'),
-        my_map_double(film, 'gross'), my_map_double(film, 'worldwideGross'),
+        my_map_int(film, 'budget'),
+        my_map_int(film, 'gross'), my_map_int(film, 'worldwideGross'),
         0, 0, 0, 0, 0, 0, 0, 0
     )
 
@@ -79,7 +79,7 @@ def save_producer(producer):
         db.commit()
     except Exception as e:
         db.rollback()
-        print('insert producer wrong',e.message)
+        print('insert producer wrong', e.args)
         logging.error(traceback.format_exc())
 
 
@@ -102,8 +102,9 @@ def save_film_update(film):
         db.commit()
     except Exception as e:
         db.rollback()
-        print('update film wrong', e.message)
+        print('update film wrong', e.args)
         logging.error(traceback.format_exc())
+        print(film_data)
 
 
 def save_film(film):
@@ -137,13 +138,12 @@ def save_review(review):
         db.commit()
     except Exception as e:
         db.rollback()
-        print('insert review wrong', e.message)
+        print('insert review wrong', e.args)
         logging.error(traceback.format_exc())
 
 
-db = MySQLdb.connect(passwd.domain, passwd.user, passwd.password, passwd.db)
+db = pymysql.connect(passwd.domain, passwd.user, passwd.password, passwd.db, charset='utf8')
 cursor = db.cursor()
-db.set_character_set('utf8')
 cursor.execute('SET NAMES utf8;')
 cursor.execute('SET CHARACTER SET utf8;')
 cursor.execute('SET character_set_connection=utf8;')

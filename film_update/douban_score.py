@@ -2,7 +2,7 @@ import json
 import logging
 import socket
 import traceback
-import urllib2
+from urllib import request
 
 
 def get_score(film_id):
@@ -16,10 +16,10 @@ def get_score(film_id):
 
     socket.setdefaulttimeout(10)
 
-    request = urllib2.Request(myurl, None, headers)
+    my_request = request.Request(myurl, None, headers)
     html = None
     try:
-        html = urllib2.urlopen(request, timeout=10)
+        html = request.urlopen(my_request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
         print("can't open")

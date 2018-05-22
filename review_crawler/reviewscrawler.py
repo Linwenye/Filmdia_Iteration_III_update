@@ -79,13 +79,13 @@ def reviewscrawler(filmid):
         if reviews_num > 500:
             reviews_num = 500
 
-        range_y = reviews_num / 10
+        range_y = reviews_num // 10
         for i in range(0, range_y):
             theurl = 'http://www.imdb.com/title/' + filmid + '/reviews?start=' + str(i * 10)
             review_page_crawler(filmid, theurl)
             # review_page_crawler(filmid, theurl, the_f_log)
     except Exception as e:
-        print(e.message)
+        print(e.args)
         print("maybe no network")
 
 

@@ -1,10 +1,10 @@
 # -*- coding: UTF-8 -*-
-import MySQLdb
+import pymysql
 from crawler_util import page_read
 from film_update import moviescrawler
 from db_helper import passwd
 
-db = MySQLdb.connect(passwd.domain, passwd.user, passwd.password, passwd.db)
+db = pymysql.connect(passwd.domain, passwd.user, passwd.password, passwd.db,charset='utf8')
 cursor = db.cursor()
 
 create_film = '''CREATE TABLE IF NOT EXISTS UpdateFilm(

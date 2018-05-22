@@ -1,4 +1,3 @@
-import MySQLdb
 from crawler_util import page_read
 from film_update import moviescrawler
 from db_helper.save import cursor, db
