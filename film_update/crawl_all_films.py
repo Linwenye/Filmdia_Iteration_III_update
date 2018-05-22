@@ -4,7 +4,7 @@ from crawler_util import page_read
 the_url = 'http://www.imdb.com/search/title?count=100' \
           '&release_date=1915-01-01,2017-06-30&title_type=feature&page='
 imdb_href = 'http://www.imdb.com'
-for i in range(1, 3):
+for i in range(1, 100):
     target = the_url + str(i)
     soup = page_read.page_read_power(target)
     if soup:
