@@ -21,7 +21,7 @@ def inner_page_read(myurl, f_log):
         html = urllib2.urlopen(request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
-        print "can't open"
+        print("can't open")
     try:
         html = html.read()
         soup = BeautifulSoup(html, "lxml")
@@ -37,7 +37,7 @@ def page_read(myurl, f_log):
     soup = inner_page_read(myurl, f_log)
     while not soup and i < 5:
         i += 1
-        print myurl + 'try open again'
+        print( myurl + 'try open again')
         soup = inner_page_read(myurl, f_log)
     return soup
 
@@ -57,7 +57,6 @@ def inner_page_read_nolog(myurl):
         html = urllib2.urlopen(request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
-        print "can't open"
     try:
         html = html.read()
         soup = BeautifulSoup(html, "lxml")
@@ -73,7 +72,7 @@ def page_read_nolog(myurl):
     soup = inner_page_read_nolog(myurl)
     while not soup and i < 5:
         i += 1
-        print myurl + 'try open again'
+        print(myurl + 'try open again')
         soup = inner_page_read_nolog(myurl)
     return soup
 
@@ -81,6 +80,6 @@ def page_read_nolog(myurl):
 def page_read_power(myurl):
     soup = inner_page_read_nolog(myurl)
     while not soup:
-        print myurl + 'try open again'
+        print(myurl + 'try open again')
         soup = inner_page_read_nolog(myurl)
     return soup

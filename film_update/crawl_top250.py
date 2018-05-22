@@ -1,6 +1,6 @@
 import MySQLdb
 from crawler_util import page_read
-import moviescrawler
+from film_update import moviescrawler
 from db_helper.save import cursor, db
 
 i = 0

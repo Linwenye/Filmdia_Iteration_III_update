@@ -1,7 +1,7 @@
 import logging
 import traceback
 import MySQLdb
-import passwd
+from db_helper import passwd
 
 
 def my_map(my_dict, my_key):

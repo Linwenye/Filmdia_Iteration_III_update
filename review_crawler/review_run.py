@@ -17,7 +17,7 @@ cursor.execute('SET character_set_connection=utf8;')
 cursor.execute('SELECT DISTINCT imdb_filmID FROM filmdia.Review')
 filmids_exist = cursor.fetchall()
 for filmid in filmids:
-    print filmid[0]
+    print(filmid[0])
     if filmid not in filmids_exist:
         reviewscrawler.reviewscrawler(filmid[0])
 

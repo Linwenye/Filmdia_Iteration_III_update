@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 import MySQLdb
 from crawler_util import page_read
-import moviescrawler
+from film_update import moviescrawler
 from db_helper import passwd
 
 db = MySQLdb.connect(passwd.domain, passwd.user, passwd.password, passwd.db)

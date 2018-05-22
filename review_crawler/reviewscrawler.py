@@ -86,7 +86,7 @@ def reviewscrawler(filmid):
             # review_page_crawler(filmid, theurl, the_f_log)
     except Exception as e:
         print(e.message)
-        print "maybe no network"
+        print("maybe no network")
 
 
 if __name__ == '__main__':

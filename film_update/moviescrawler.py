@@ -1,9 +1,9 @@
 from crawler_util import page_read
 from crawler_util import convert_time
 from db_helper import save
-import producerscrawler
+from film_update import producerscrawler
 from review_crawler import reviewscrawler
-import douban_score
+from film_update import douban_score
 from crawler_util.util import get_num
 import re
 
@@ -25,7 +25,7 @@ def crawl_imdb(film_id, film_type, need_update=False):
         summary = summary_text.get_text().strip().split("See")[0].strip()
         film['summary'] = summary
     else:
-        print 'no summary'
+        print('no summary')
     directors = list()
     actors = list()
     for dire in soup.find_all(attrs={'itemprop': 'director'}):

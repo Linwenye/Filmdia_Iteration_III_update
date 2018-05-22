@@ -1,6 +1,6 @@
 import MySQLdb
 from crawler_util import page_read
-import moviescrawler
+from film_update import moviescrawler
 from db_helper.save import cursor, db
 
 
@@ -26,6 +26,6 @@ for item in soup.select('.lister-item-header'):
             '''UPDATE FilmDB SET Oscar = 1 WHERE imdb_filmID=%s''',
             (the_filmid,))
     else:
-        print the_filmid
+        print(the_filmid)
         moviescrawler.crawl_imdb(the_filmid, 'Oscar')
 db.commit()

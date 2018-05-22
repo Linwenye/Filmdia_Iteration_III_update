@@ -22,7 +22,7 @@ def get_score(film_id):
         html = urllib2.urlopen(request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
-        print "can't open"
+        print("can't open")
     try:
         html = html.read()
     except Exception as e:
