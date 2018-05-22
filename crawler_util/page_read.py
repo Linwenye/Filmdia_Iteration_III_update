@@ -12,7 +12,7 @@ def inner_page_read(myurl, f_log):
         'Accept-Language': 'en-US,en;q=0.8',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
     }
-    socket.setdefaulttimeout(10)
+    socket.setdefaulttimeout(20)
 
     my_request = request.Request(myurl, None, headers)
     html = None
@@ -83,3 +83,8 @@ def page_read_power(myurl):
         print(myurl + 'try open again')
         soup = inner_page_read_nolog(myurl)
     return soup
+
+
+if __name__ == '__main__':
+    # soup = inner_page_read_nolog("http://218.94.159.99/login/index.php")
+    soup = inner_page_read_nolog("http://www.imdb.com")

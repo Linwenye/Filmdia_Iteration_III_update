@@ -13,11 +13,17 @@ def crawl_imdb(film_id, film_type, need_update=False):
     soup = page_read.page_read_nolog(movieurl)
     if not soup:
         return
+
     film = dict()
     # write id and name
     film['imdb_filmID'] = film_id
     film_name = soup.find_all(attrs={'itemprop': 'name'})[0].get_text()
     film['name'] = film_name
+
+    # info print
+    print('crawl id:', film_id)
+    print('film name:', film_name)
+    print()
 
     # write summary and directors,etc.
     summary_text = soup.select('.summary_text')[0]
