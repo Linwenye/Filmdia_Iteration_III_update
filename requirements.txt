@@ -1,4 +1,3 @@
 MySQL-python
 beautifulsoup4
 lxml
-urllib2

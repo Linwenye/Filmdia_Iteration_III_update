@@ -1,5 +1,5 @@
 import socket
-import urllib2
+from urllib import request
 import traceback
 import logging
 import time
@@ -14,11 +14,11 @@ def inner_page_read(myurl, f_log):
     }
     socket.setdefaulttimeout(10)
 
-    request = urllib2.Request(myurl, None, headers)
+    my_request = request.Request(myurl, None, headers)
     html = None
     soup = None
     try:
-        html = urllib2.urlopen(request, timeout=10)
+        html = request.urlopen(my_request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
         print("can't open")
@@ -37,7 +37,7 @@ def page_read(myurl, f_log):
     soup = inner_page_read(myurl, f_log)
     while not soup and i < 5:
         i += 1
-        print( myurl + 'try open again')
+        print(myurl + 'try open again')
         soup = inner_page_read(myurl, f_log)
     return soup
 
@@ -50,11 +50,11 @@ def inner_page_read_nolog(myurl):
     }
     socket.setdefaulttimeout(10)
 
-    request = urllib2.Request(myurl, None, headers)
+    my_request = request.Request(myurl, None, headers)
     html = None
     soup = None
     try:
-        html = urllib2.urlopen(request, timeout=10)
+        html = request.urlopen(my_request, timeout=10)
     except Exception as e:
         logging.error(traceback.format_exc())
     try:
@@ -62,7 +62,7 @@ def inner_page_read_nolog(myurl):
         soup = BeautifulSoup(html, "lxml")
     except Exception as e:
         logging.error(traceback.format_exc())
-        print (myurl + ": can't open imdb\n")
+        print(myurl + ": can't open imdb\n")
         return
     return soup
 
