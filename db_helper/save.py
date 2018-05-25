@@ -120,6 +120,7 @@ def save_film(film):
     try:
         cursor.execute(film_sql, film_data)
         db.commit()
+        print('save film', film_data[7])
     except:
         db.rollback()
 
