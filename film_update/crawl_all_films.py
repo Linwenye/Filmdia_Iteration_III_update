@@ -13,4 +13,4 @@ for i in range(1, 100):
             print(str(i) + ': ' + movieurl)
             the_filmid = item.a.get('href').split('title/')[1].split('/')[0]
             if the_filmid:
-                moviescrawler.crawl_imdb(the_filmid, 'Normal', False)
+                moviescrawler.crawl_imdb(the_filmid, 'Normal')
