@@ -87,4 +87,4 @@ def page_read_power(myurl):
 
 if __name__ == '__main__':
     # soup = inner_page_read_nolog("http://218.94.159.99/login/index.php")
-    soup = inner_page_read_nolog("http://www.imdb.com")
+    inner_page_read_nolog("http://www.imdb.com")

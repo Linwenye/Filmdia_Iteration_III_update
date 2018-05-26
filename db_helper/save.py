@@ -45,7 +45,7 @@ def list_to_string(my_list):
     return res
 
 
-def data_convert(film):
+def data_convert_update(film):
     film_data = (
         list_to_string_split(my_map(film, 'actors')), my_map(film, 'country'),
         list_to_string_split(my_map(film, 'directors')),
@@ -61,6 +61,26 @@ def data_convert(film):
         my_map_int(film, 'budget'),
         my_map_int(film, 'gross'), my_map_int(film, 'worldwideGross'),
         0, 0, 0, 0, 0, 0, 0, 0
+    )
+
+    return film_data
+
+
+def data_convert(film):
+    film_data = (
+        list_to_string_split(my_map(film, 'actors')), my_map(film, 'country'),
+        list_to_string_split(my_map(film, 'directors')),
+        my_map(film, 'filmType'), my_map(film, 'filmWatchURL'), my_map(film, 'imdb_filmID'), my_map(film, 'language'),
+        my_map(film, 'name'),
+        my_map(film, 'onTime'), my_map(film, 'posterURL'), my_map(film, 'ratingNum'), my_map_double(film, 'score'),
+        my_map_double(film, 'douban_score'), list_to_string_split(my_map(film, 'scriptKeyWords')),
+        my_map(film, 'summary'),
+        my_map(film, 'tagLine'), list_to_string_split(my_map(film, 'tags')), my_map(film, 'cast'),
+        my_map(film, 'storyline'),
+        my_map(film, 'award'),
+        my_map_double(film, 'runtime'), my_map(film, 'soundmix'), my_map_int(film, 'Oscar'),
+        my_map_int(film, 'budget'),
+        my_map_int(film, 'gross'), my_map_int(film, 'worldwideGross')
     )
 
     return film_data
@@ -95,7 +115,7 @@ def save_film_update(film):
     linear_predict,linear_test,lasso_predict,lasso_test,knn_predict,knn_test,poly_predict,poly_test) 
     VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) '''
 
-    film_data = data_convert(film)
+    film_data = data_convert_update(film)
     # print(film_data)
     try:
         cursor.execute(update_film_sql, film_data)
