@@ -7,6 +7,7 @@ from crawler_util.util import get_num
 def review_page_crawler(film_id, myurl):
     soup = page_read.page_read_nolog(myurl)
     # soup = page_read.page_read(myurl, f_log)
+    key = ''
     if soup:
         for item in soup.select('.lister-item-content'):
             review = dict()
@@ -26,9 +27,10 @@ def review_page_crawler(film_id, myurl):
             review['userCountry'] = None
 
             review['text'] = item.select_one('.text').get_text().strip()
-            print(review)
+            # print(review)
             save.save_review(review)
-    return
+        key = soup.select_one(".load-more-data")['data-key']
+    return key
 
 
 def reviewscrawler(filmid):
@@ -45,11 +47,13 @@ def reviewscrawler(filmid):
         if reviews_num > 500:
             reviews_num = 500
 
-        range_y = reviews_num // 10
+        range_y = reviews_num // 25
+        key = ''
         for i in range(range_y):
-            theurl = 'http://www.imdb.com/title/' + filmid + '/reviews'
-            review_page_crawler(filmid, theurl)
-            # review_page_crawler(filmid, theurl, the_f_log)
+            theurl = 'http://www.imdb.com/title/' + filmid + '/reviews/_ajax?ref_=undefined&paginationKey=' + key
+            key = review_page_crawler(filmid, theurl)
+            # print(key)
+        # review_page_crawler(filmid, theurl, the_f_log)
     except Exception as e:
         print(e.args)
         print("maybe no network")
@@ -57,4 +61,5 @@ def reviewscrawler(filmid):
 
 if __name__ == '__main__':
     # reviewscrawler('tt0068646')
-    review_page_crawler('tt0111161', 'https://www.imdb.com/title/tt0111161/reviews?ref_=tt_urv')
+    reviewscrawler('tt0111161')
+    # review_page_crawler('tt0111161', 'https://www.imdb.com/title/tt0111161/reviews?ref_=tt_urv')
