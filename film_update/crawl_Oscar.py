@@ -24,6 +24,7 @@ for item in soup.select('.lister-item-header'):
         cursor.execute(
             '''UPDATE FilmDB SET Oscar = 1 WHERE imdb_filmID=%s''',
             (the_filmid,))
+        db.commit()
     else:
         print(the_filmid)
         moviescrawler.crawl_imdb(the_filmid, 'Oscar')

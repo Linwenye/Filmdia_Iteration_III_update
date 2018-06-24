@@ -82,14 +82,7 @@ def crawl_imdb(film_id, film_type, need_update=False):
             if not item.has_attr('class'):
                 continue
             cast += item.find_all(attrs={'itemprop': 'name'})[0].string + ':'
-            i = 0
-            for character in item.select('.character')[0].find_all('a'):
-                if i == 0:
-                    cast += character.string
-                    i += 1
-                else:
-                    cast += ',' + character.string
-            cast += '/'
+            cast += item.select_one('.character').get_text().strip()+'/'
         film['cast'] = cast
 
     # write storyline

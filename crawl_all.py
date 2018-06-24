@@ -1,3 +1,3 @@
+import film_update.crawl_all_films
 import film_update.crawl_top250
 import film_update.crawl_Oscar
-import film_update.crawl_all_films
